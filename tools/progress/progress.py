@@ -404,8 +404,7 @@ def render_readme(model: Model) -> str:
     L.append(
         f"**Phase {model.current_phase} \u2014 {phase['name']}** \u00b7 as of {model.as_of} "
         f"\u00b7 [Roadmap](roadmap.md) \u00b7 [Requirements](requirements.md) "
-        f"\u00b7 [Guardrails](guardrails.md) \u00b7 [Decisions](decisions.md) "
-        f"\u00b7 [Visual dashboard](dashboard.html)\n"
+        f"\u00b7 [Guardrails](guardrails.md) \u00b7 [Decisions](decisions.md)\n"
     )
     L.append(f"> {model.roadmap.get('state_of_play', '')}\n")
 
@@ -485,10 +484,10 @@ def render_readme(model: Model) -> str:
 
     L.append("## How this stays true\n")
     L.append(
-        "This tracker is generated from `docs/progress/data/*.json`. Update the data in the same "
-        "pull request as the work, run `python3 tools/progress/progress.py build`, and commit the "
-        "regenerated views. CI fails a pull request whose views are stale or whose cited requirement "
-        "IDs do not exist. See [HOWTO.md](HOWTO.md).\n"
+        "This tracker is generated from `docs/progress/data/*.json`. Edit the data in the same pull "
+        "request as the work and reference the requirement IDs in the description - CI regenerates "
+        "these views and commits them to your branch. A cited ID that does not exist fails the "
+        "pull request. See [HOWTO.md](HOWTO.md).\n"
     )
     return "\n".join(L).rstrip() + "\n"
 
@@ -746,9 +745,9 @@ VIEWS = {
 
 
 def build_all(model: Model) -> dict:
-    files = {name: fn(model) for name, fn in VIEWS.items()}
-    files["dashboard.html"] = render_html.render(model, standalone=True)
-    return files
+    """The views that live in the repository. The HTML dashboard is deliberately
+    not one of them - see `html`, and docs/progress/HOWTO.md."""
+    return {name: fn(model) for name, fn in VIEWS.items()}
 
 
 def cmd_build(args) -> int:

@@ -4,7 +4,7 @@
 
 # UFQ progress tracker
 
-**Phase 0 — Calibration pilot** · as of 2026-08-26 · [Roadmap](roadmap.md) · [Requirements](requirements.md) · [Guardrails](guardrails.md) · [Decisions](decisions.md) · [Visual dashboard](dashboard.html)
+**Phase 0 — Calibration pilot** · as of 2026-08-26 · [Roadmap](roadmap.md) · [Requirements](requirements.md) · [Guardrails](guardrails.md) · [Decisions](decisions.md)
 
 > Repository bootstrapped and the product framework is committed. No application code yet: the stack decision (ADR-0001) is open and blocks the first vertical slice.
 
@@ -62,4 +62,4 @@ Feature icons in reading order: ⬜ not started, 🟡 in progress, 🟢 shipped,
 
 ## How this stays true
 
-This tracker is generated from `docs/progress/data/*.json`. Update the data in the same pull request as the work, run `python3 tools/progress/progress.py build`, and commit the regenerated views. CI fails a pull request whose views are stale or whose cited requirement IDs do not exist. See [HOWTO.md](HOWTO.md).
+This tracker is generated from `docs/progress/data/*.json`. Edit the data in the same pull request as the work and reference the requirement IDs in the description - CI regenerates these views and commits them to your branch. A cited ID that does not exist fails the pull request. See [HOWTO.md](HOWTO.md).
