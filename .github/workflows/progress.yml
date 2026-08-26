@@ -1,7 +1,8 @@
 name: Progress tracker
 
-# Keeps docs/progress/ honest: the generated views must match the data, and every
-# requirement ID a pull request cites must actually exist.
+# You edit docs/progress/data/*.json; this regenerates the views and commits them
+# to your branch. Two things are hard gates: the data must be valid, and every
+# requirement ID a pull request cites must exist.
 
 on:
   pull_request:
@@ -13,15 +14,15 @@ permissions:
 
 jobs:
   check:
-    name: Data and generated views
+    name: Data integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Validate the registry and check the views are current
-        run: python3 tools/progress/progress.py check
+      - name: Validate the registry
+        run: python3 tools/progress/progress.py validate
 
       - name: Resolve cited requirement IDs
         if: github.event_name == 'pull_request'
@@ -37,9 +38,48 @@ jobs:
             --text-file "$RUNNER_TEMP/pr-title.txt" \
             --text-file "$RUNNER_TEMP/pr-body.txt"
 
+      # Nothing pushes to main, and forked branches cannot be written to, so in
+      # those cases a stale view is an error rather than something CI fixes.
+      - name: Views must be current
+        if: >-
+          github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: python3 tools/progress/progress.py check
+
+  sync:
+    name: Regenerate views
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Check out the branch itself, not the merge commit, so the push lands on it.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Rebuild the views
+        run: python3 tools/progress/progress.py build
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- docs/progress; then
+            echo "views already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/progress
+          git commit -m "docs(progress): regenerate tracker views"
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+
   comment:
     name: Pull-request summary
+    needs: sync
     if: >-
+      always() &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest

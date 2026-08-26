@@ -24,14 +24,12 @@ Do not silently change a binding product requirement in code. Product-level chan
 `docs/progress/` tracks delivery and compliance state for every requirement ID, and it is
 generated from `docs/progress/data/*.json`.
 
-Update it in the same pull request as the work:
+Update it in the same pull request as the work: edit `docs/progress/data/requirements.json` for
+anything whose state changed, and reference the requirement IDs in the pull-request description.
 
-1. edit `docs/progress/data/requirements.json` for anything whose state changed;
-2. run `python3 tools/progress/progress.py build`;
-3. commit the data change and the regenerated views alongside the code.
-
-CI fails a pull request whose generated views are stale, or which cites a requirement ID that
-does not exist. See [`docs/progress/HOWTO.md`](docs/progress/HOWTO.md).
+CI regenerates the views and commits them to your branch, so there is no build step to remember.
+A cited requirement ID that does not exist fails the pull request. See
+[`docs/progress/HOWTO.md`](docs/progress/HOWTO.md).
 
 A guardrail moves to `at-risk` or `violated` in the pull request that introduces the risk, not
 in a later cleanup pass.

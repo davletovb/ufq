@@ -14,7 +14,7 @@
 
 ## Progress tracker
 
-- [ ] `docs/progress/data/` updated and `python3 tools/progress/progress.py build` re-run
+- [ ] `docs/progress/data/` updated for anything whose state changed (CI regenerates the views)
 - [ ] No tracker change needed (explain below)
 
 ## How was it tested?

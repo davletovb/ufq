@@ -5,22 +5,24 @@ The tracker is generated. You edit data, not documents.
 ```text
 docs/progress/data/*.json   <- you edit this
         |
-        |  python3 tools/progress/progress.py build
+        |  CI, on every pull request
         v
 docs/progress/README.md, roadmap.md, requirements.md,
-guardrails.md, decisions.md, dashboard.html   <- generated, committed, never hand-edited
+guardrails.md, decisions.md   <- generated, committed by CI, never hand-edited
 ```
 
 ## The loop, per pull request
 
 1. Do the work.
 2. Update `docs/progress/data/requirements.json` for anything whose state changed.
-3. Run `python3 tools/progress/progress.py build`.
-4. Commit the data change and the regenerated views together with the code.
-5. Reference the requirement IDs in the pull-request description.
+3. Reference the requirement IDs in the pull-request description.
 
-CI fails the pull request if the views are stale or if a cited ID does not exist,
-and posts a comment showing the status changes the pull request makes.
+That is the whole loop. CI regenerates the views and commits them to your branch,
+and posts a comment showing the status changes the pull request makes. A cited ID
+that does not exist fails the pull request.
+
+You can run `python3 tools/progress/progress.py build` locally if you want to see
+the rendered views before pushing, but you do not have to.
 
 ## What a status means
 
@@ -103,6 +105,21 @@ decision that ADR-0001 has yet to make.
 
 ## The visual dashboard
 
-`dashboard.html` is generated alongside the Markdown and opens directly in a browser.
-It is also the source for the shared dashboard page — regenerate with `--fragment` and
-republish to the same URL so the link stays stable.
+The HTML dashboard is an **on-demand export**, not a file in the repository. It was
+committed once and removed: GitHub renders a repository `.html` file as source rather
+than as a page, so the copy in the repo could not actually be looked at, and its diff
+was a single 64,000-character line.
+
+Generate one when you need it:
+
+```bash
+python3 tools/progress/progress.py html > dashboard.html      # opens in any browser
+python3 tools/progress/progress.py html --fragment > page.html  # for publishing
+```
+
+Both render from the same data as the Markdown views, so they cannot disagree. The
+shared page for people who will not read a GitHub table is refreshed on request,
+republished to the same URL so the link stays stable.
+
+The Markdown views are the canonical surface: they render natively where the work
+already happens.
