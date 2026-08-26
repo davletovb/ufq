@@ -1,0 +1,28 @@
+{
+  "schema": "ufq.progress.decisions/1",
+  "as_of": "2026-08-26",
+  "note": "Product decisions mirror the framework's Decisions Log (§16) and are authoritative there. ADRs cover implementation choices. Open questions are tracked here until they become decisions.",
+  "product_decisions": [
+    { "id": "D-1", "date": "2026-08-25", "decision": "RIASEC retained as internal scaffold only; re-derivation from local data planned.", "rationale": "GT-2, GT-3, P-5.", "owner": "Research lead", "affects": ["P-5", "M2-F4", "M6-F4"] },
+    { "id": "D-2", "date": "2026-08-25", "decision": "Primary audience grades 7-9.", "rationale": "Subject-block lock-in at 9-10 (GT-4).", "owner": "Product", "affects": ["R-1", "GT-4"] },
+    { "id": "D-3", "date": "2026-08-25", "decision": "Telegram Mini App primary consumer surface with full web parity.", "rationale": "GT-6; platform-dependency risk.", "owner": "Product/Eng", "affects": ["NFR-1", "NFR-2", "RK-7"] },
+    { "id": "D-4", "date": "2026-08-25", "decision": "No ranked lists or individual score exports, permanently.", "rationale": "E-3; institutional-misuse risk.", "owner": "Product", "affects": ["E-3", "M5-F6"] },
+    { "id": "D-5", "date": "2026-08-25", "decision": "B2B beachhead: private schools; public scale via tuman-level deals.", "rationale": "GT-7; sales-cycle reality.", "owner": "Product", "affects": ["M5", "R-5"] },
+    { "id": "D-6", "date": "2026-08-25", "decision": "Migration pathway content on consumer surface only.", "rationale": "E-9; institutional sensitivity.", "owner": "Content", "affects": ["E-9", "M4-F4"] }
+  ],
+  "adrs": [
+    { "id": "ADR-0001", "title": "Choose the initial application stack", "status": "proposed", "date": null, "product_refs": ["NFR-1", "NFR-2", "GT-6"], "tracking": "https://github.com/davletovb/ufq/issues/1", "blocks": ["M1-F1", "M1-F3", "M6-F1"] }
+  ],
+  "open_questions": [
+    { "id": "OQ-1", "area": "engineering", "question": "Hosting provider inside Uzbekistan that satisfies the data-residency requirement.", "blocks": ["E-8"], "source": "framework §7.6", "note": "ID assigned by this tracker." },
+    { "id": "OQ-2", "area": "content", "question": "Transliteration implementation: build-time or render-time, and who owns the exception table.", "blocks": ["NFR-5", "RK-6"], "source": "framework §7.3", "note": "ID assigned by this tracker." },
+    { "id": "OQ-3", "area": "research", "question": "The two remaining values cards, to be determined in Phase 0.", "blocks": ["M2-F1"], "source": "framework §6 M2-F1", "note": "ID assigned by this tracker." },
+    { "id": "OQ-4", "area": "mentorship", "question": "Monetization of T-5 family consultations, and what paid mentorship does to the volunteer framing.", "blocks": ["T-5"], "source": "mentorship §11.1", "note": "ID assigned by this tracker." },
+    { "id": "OQ-5", "area": "mentorship", "question": "Stipend levels and funding source for MS-2 near-peers, and whether university partners co-fund.", "blocks": ["MS-2"], "source": "mentorship §11.2", "note": "ID assigned by this tracker." },
+    { "id": "OQ-6", "area": "mentorship", "question": "Moderation staffing for T-2 at launch scale: in-house or trained senior mentors.", "blocks": ["T-2"], "source": "mentorship §11.3", "note": "ID assigned by this tracker." },
+    { "id": "OQ-7", "area": "mentorship", "question": "Who moderates T-3 content, and what advisor training adds for hosting duties.", "blocks": ["T-3"], "source": "mentorship §11.4", "note": "ID assigned by this tracker." },
+    { "id": "OQ-8", "area": "content", "question": "Karakalpak and regional-language mentor supply timing relative to locale expansion.", "blocks": ["NFR-5"], "source": "mentorship §11.5", "note": "ID assigned by this tracker." },
+    { "id": "OQ-9", "area": "legal", "question": "Legal review of obligations around organized minor-adult contact under Uzbek law. Required before any T-4+ format.", "blocks": ["T-4", "T-5", "T-6"], "source": "mentorship §11.6", "note": "ID assigned by this tracker." },
+    { "id": "OQ-10", "area": "mentorship", "question": "Whether T-2 answers are attributable by full name or first name plus role.", "blocks": ["T-2"], "source": "mentorship §11.7", "note": "ID assigned by this tracker." }
+  ]
+}

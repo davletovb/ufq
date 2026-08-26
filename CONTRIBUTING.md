@@ -19,6 +19,23 @@ feat(explorer): log career-card exposure events (M1-F3, M6-F1)
 
 Do not silently change a binding product requirement in code. Product-level changes belong in the product Decisions Log first.
 
+## Progress tracker
+
+`docs/progress/` tracks delivery and compliance state for every requirement ID, and it is
+generated from `docs/progress/data/*.json`.
+
+Update it in the same pull request as the work:
+
+1. edit `docs/progress/data/requirements.json` for anything whose state changed;
+2. run `python3 tools/progress/progress.py build`;
+3. commit the data change and the regenerated views alongside the code.
+
+CI fails a pull request whose generated views are stale, or which cites a requirement ID that
+does not exist. See [`docs/progress/HOWTO.md`](docs/progress/HOWTO.md).
+
+A guardrail moves to `at-risk` or `violated` in the pull request that introduces the risk, not
+in a later cleanup pass.
+
 ## Before merging
 
 A PR should make clear:
@@ -27,7 +44,8 @@ A PR should make clear:
 2. why it changed;
 3. which product requirements or engineering decisions it touches;
 4. how it was tested;
-5. whether it changes data collection, consent, localization, or access control.
+5. whether it changes data collection, consent, localization, or access control;
+6. that the progress tracker reflects the change.
 
 ## Engineering decisions
 
