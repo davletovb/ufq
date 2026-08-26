@@ -67,6 +67,9 @@ docs/
   decisions/
   engineering/
   product/
+  progress/       # generated delivery and compliance tracker
+tools/
+  progress/       # tracker generator; standard library only
 ```
 
 This shape is a proposal, not yet an accepted architecture decision.
@@ -78,3 +81,6 @@ The first runnable vertical slice should be intentionally narrow:
 > A student can open one career card, the system records a versioned exposure event, the student can resume after reconnecting, and the event can be inspected in a de-identified development dataset.
 
 That slice validates the most important early architecture: content, localization, telemetry, resumability, and data boundaries before assessment complexity is added.
+
+Its requirements are tracked as `M1-F1`, `M1-F3`, `M2-F3`, `M6-F1` and `NFR-6` in the
+[progress tracker](../progress/README.md).

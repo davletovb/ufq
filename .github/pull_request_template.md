@@ -12,6 +12,11 @@
 
 - 
 
+## Progress tracker
+
+- [ ] `docs/progress/data/` updated and `python3 tools/progress/progress.py build` re-run
+- [ ] No tracker change needed (explain below)
+
 ## How was it tested?
 
 - [ ] Automated tests

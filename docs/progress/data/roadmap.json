@@ -1,0 +1,105 @@
+{
+  "schema": "ufq.progress.roadmap/1",
+  "as_of": "2026-08-26",
+  "current_phase": "0",
+  "state_of_play": "Repository bootstrapped and the product framework is committed. No application code yet: the stack decision (ADR-0001) is open and blocks the first vertical slice.",
+  "phases": [
+    {
+      "id": "0",
+      "name": "Calibration pilot",
+      "status": "active",
+      "goal": "Calibrate items, formats and reading levels. Not sales.",
+      "scope": "Pilot build: M1 subset (~60 cards, ~10 videos), M2 calibration item set, M3-lite, M6 telemetry. Three deliberately different sites: a Tashkent private school, a viloyat-centre school, a rural school. Target n = 150-300 students, grades 7-9.",
+      "source": "framework §10",
+      "exit_criteria": [
+        { "id": "PG0-1", "label": "Session completion across all three sites", "target": ">= 70% of started chunks", "current": null, "status": "not-started", "source": "framework §11.4" },
+        { "id": "PG0-2", "label": "Median unique career cards viewed per student", "target": ">= 12", "current": null, "status": "not-started", "source": "framework §11.4" },
+        { "id": "PG0-3", "label": "Parent join rate in at least one site", "target": ">= 30%", "current": null, "status": "not-started", "source": "framework §11.4" },
+        { "id": "PG0-4", "label": "Calibration items flagged for comprehension failure in either script", "target": "< 10%", "current": null, "status": "not-started", "source": "framework §11.4" },
+        { "id": "PG0-5", "label": "Item pool surviving statistical screening into the v1 scored set", "target": ">= 60%", "current": null, "status": "not-started", "source": "framework §11.4" }
+      ]
+    },
+    {
+      "id": "1",
+      "name": "MVP, B2C via Telegram (free)",
+      "status": "planned",
+      "goal": "Accumulate psychometric data, norms and word of mouth; the family module is the retention engine.",
+      "scope": "Telegram Mini App plus responsive web/PWA at account parity; three locales at full parity; M1 at content floor; M2 full item set with v1 scoring; M3 full; M4 template planner; M6 pipelines; consent, residency and audit logging.",
+      "source": "framework §10",
+      "exit_criteria": [
+        { "id": "PG1-1", "label": "Norm baselines established", "target": "published", "current": null, "status": "not-started", "source": "framework §10" },
+        { "id": "PG1-2", "label": "Phase-1 metrics trending to target for one school term", "target": "one full term", "current": null, "status": "not-started", "source": "framework §10, §13" }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "B2B, private schools first",
+      "status": "planned",
+      "goal": "The advisor's operating system and the reporting wedge. Districts for public scale after.",
+      "scope": "M5 full, M7 async Q&A, lab mode, onboarding kit, manual invoicing, advisor micro-training.",
+      "source": "framework §10",
+      "exit_criteria": [
+        { "id": "PG2-1", "label": "Paying schools with renewed intent", "target": "N - set in the Decisions Log at Phase-2 start", "current": null, "status": "not-started", "source": "framework §10" }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Universities",
+      "status": "planned",
+      "goal": "First-year orientation, major-switching triage, employability. Not designed yet, by intent.",
+      "scope": "Deliberately undesigned.",
+      "source": "framework §10",
+      "exit_criteria": [
+        { "id": "PG3-1", "label": "Local norms published", "target": "published", "current": null, "status": "not-started", "source": "framework §10" },
+        { "id": "PG3-2", "label": "Follow-up validity data from M6-F5", "target": "collected", "current": null, "status": "not-started", "source": "framework §10" },
+        { "id": "PG3-3", "label": "Brand evidence universities will demand", "target": "documented", "current": null, "status": "not-started", "source": "framework §10" }
+      ]
+    }
+  ],
+  "content_floor": [
+    { "id": "CF-1", "label": "Career cards", "phase": "0", "target": 60, "current": 0, "unit": "cards", "source": "framework §10" },
+    { "id": "CF-2", "label": "Day-in-the-life videos", "phase": "0", "target": 10, "current": 0, "unit": "videos", "source": "framework §10" },
+    { "id": "CF-3", "label": "Career cards", "phase": "1", "target": 120, "current": 0, "unit": "cards", "source": "framework §10, §12" },
+    { "id": "CF-4", "label": "Videos with low-bandwidth variants", "phase": "1", "target": 30, "current": 0, "unit": "videos", "source": "framework §10, §12" },
+    { "id": "CF-5", "label": "Pathway templates", "phase": "1", "target": 40, "current": 0, "unit": "templates", "source": "framework §10, §12" }
+  ],
+  "metrics": [
+    { "id": "KPI-1", "phase": "1", "label": "Activation: signups completing at least one assessment chunk", "target": ">= 50%", "current": null },
+    { "id": "KPI-2", "phase": "1", "label": "Exposure breadth: median unique cards viewed per 30 days", "target": ">= 15", "current": null },
+    { "id": "KPI-3", "phase": "1", "label": "Full assessment completion among activated users", "target": ">= 60%", "current": null },
+    { "id": "KPI-4", "phase": "1", "label": "Parent join rate on invited families", "target": ">= 25%", "current": null },
+    { "id": "KPI-5", "phase": "1", "label": "D30 retention on any meaningful event", "target": ">= 20%", "current": null },
+    { "id": "KPI-6", "phase": "1+", "label": "Psychometric: dimension reliability", "target": ">= .70", "current": null },
+    { "id": "KPI-7", "phase": "2", "label": "Advisor weekly-active among licensed advisors", "target": ">= 60%", "current": null },
+    { "id": "KPI-8", "phase": "2", "label": "Generated advisor reports per class per term", "target": ">= 1", "current": null },
+    { "id": "KPI-9", "phase": "2", "label": "School renewal intent at term end", "target": ">= 70%", "current": null },
+    { "id": "KPI-10", "phase": "1+", "label": "Follow-up response rate at 6 months, via Telegram", "target": ">= 30%", "current": null }
+  ],
+  "launch_checklists": {
+    "phase-1": [
+      { "id": "LC1-1", "label": "Telegram Mini App published; web/PWA live at parity; both scripts plus Russian verified in production", "done": false },
+      { "id": "LC1-2", "label": "Privacy policy and consent flows live in uz and ru; data-residency verification documented; deletion flow tested end to end", "done": false },
+      { "id": "LC1-3", "label": "Content floor met within freshness rules", "done": false },
+      { "id": "LC1-4", "label": "Support channel live; crash and analytics dashboards on; rollback plan rehearsed", "done": false },
+      { "id": "LC1-5", "label": "Brand register check: local, practical, slightly commercial - not an NGO intervention", "done": false }
+    ],
+    "phase-2": [
+      { "id": "LC2-1", "label": "School onboarding kit: advisor micro-training, rostering guide, data-processing agreement, MOU template", "done": false },
+      { "id": "LC2-2", "label": "Lab mode field-tested in at least two real school labs; report templates validated with at least two practising advisors", "done": false },
+      { "id": "LC2-3", "label": "Pricing sheet approved; manual invoicing acceptable at start", "done": false },
+      { "id": "LC2-4", "label": "Access matrix and E-3 non-features communicated to school leadership in writing during onboarding", "done": false }
+    ]
+  },
+  "risks": [
+    { "id": "RK-1", "label": "Deterministic labeling", "mitigation": "P-4, E-1, E-2 - plural provisional outputs are the only outputs that exist.", "status": "mitigated-by-design" },
+    { "id": "RK-2", "label": "Test-gaming", "mitigation": "E-7 low-stakes framing, no visible scores, behavioral signals that are hard to fake.", "status": "mitigated-by-design" },
+    { "id": "RK-3", "label": "Being read as teaching children to defy parents", "mitigation": "M3 overlap-first framing, parents' own values vocabulary, E-4 and E-6.", "status": "mitigated-by-design" },
+    { "id": "RK-4", "label": "Institutional misuse", "mitigation": "E-3 as a product-level refusal plus written expectation-setting at onboarding.", "status": "mitigated-by-design" },
+    { "id": "RK-5", "label": "Content staleness", "mitigation": "Freshness rules and publishing blocks; wage/cost data older than 6 months cannot publish.", "status": "open" },
+    { "id": "RK-6", "label": "Transliteration credibility", "mitigation": "Exception table as a tested artifact with a regression suite; human review of both scripts.", "status": "open" },
+    { "id": "RK-7", "label": "Telegram platform dependency", "mitigation": "Full web/PWA parity from MVP - the Mini App is a distribution choice, not the architecture.", "status": "mitigated-by-design" },
+    { "id": "RK-8", "label": "Regulatory drift", "mitigation": "M5-F3 report templates are content-configurable; maintain contact with pilot advisors as early warning.", "status": "open" },
+    { "id": "RK-9", "label": "Donor-project aesthetics", "mitigation": "Brand register check in the launch checklist; pricing exists because paid things are taken seriously.", "status": "open" },
+    { "id": "RK-10", "label": "Copying", "mitigation": "The moat is the content library, exposure-conditioned data, local norms and the validation loop. Invest there first.", "status": "open" }
+  ]
+}
